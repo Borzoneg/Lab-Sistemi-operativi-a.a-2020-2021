@@ -1,7 +1,7 @@
 # Lab-Sistemi-operativi-a.a-2020-2021
 
 ### Lab 01
-	(-) Managing directory, files and privilege from shell
+	- Managing directory, files and privilege from shell
 	- Links and diff on files
 	- C program to copy file (ASCII / binary file)
 
