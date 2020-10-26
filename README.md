@@ -12,3 +12,8 @@
 - First approach to makefile
 - Recursively copy a directory from a C script
 
+### Lab 03
+
+- Analysis of firat concurrent programs
+- First approach to fork()
+- Realization of a precedence graph
