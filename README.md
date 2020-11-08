@@ -14,6 +14,18 @@
 
 ### Lab 03
 
-- Analysis of firat concurrent programs
+- Analysis of concurrent programs that uses only fork
 - First approach to fork()
 - Realization of a precedence graph
+
+### Lab 04
+
+- Analysis of concurrent programs that uses also exec
+- First approach to exec()
+
+### Lab 05
+
+- Pipe
+- Signal
+- Redirection  of input/output of UNIX command
+- concurrent sort of a vector
