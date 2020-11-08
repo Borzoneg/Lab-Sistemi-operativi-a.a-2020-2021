@@ -1,0 +1,4 @@
+ls -laR end
+cat Results/mioFile.txt end
+mkdir Results/tmpDir end
+cp Results/mioFile.txt Results/tmpDir/mioFile.copy end
