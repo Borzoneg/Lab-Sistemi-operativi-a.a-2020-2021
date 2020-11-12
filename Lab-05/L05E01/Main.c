@@ -11,6 +11,17 @@
 // to redirect the stdout to evenfile and the stderr to oddfile
 //./Main 1> oddFile.txt 2> evenFile.txt 
 
+/******* Exercise B *******/
+// to count folder and file in my home folder
+// - ls | wc
+
+// to count number of string in the lab text
+// wc < lab03.txt --word
+
+// to count number of process actives under root
+// ps -U root | wc -l
+
+
 int main(int argc, char ** argv){
 	int input = -1 ;
 
