@@ -9,10 +9,8 @@
 #define MAX 20
 
 void manager(int SIG){
-	if(SIG == SIGUSR1){
-		fprintf(stdout, "SIGUSR1 RECEIVED\n");
+	if(SIG == SIGUSR1)
 		return;
-	}
 }
 
 int main(int argc, char **argv){
@@ -41,11 +39,11 @@ int main(int argc, char **argv){
 			exit(1);	
 		}
 		if(pid2){ // second fork father case
+			close(pipe_r); // I won't read anything from the pipe with the father so i can close it
 			write(pipe_w, &pid2, sizeof(pid2)); // write the pid2 on the pipe to give it to 1st son
 			sleep(3); // sleep 1 for race conditions problems with first son
+			close(pipe_w); // close the pipe for the father
 			kill(pid, SIGUSR1); // wake up the first son
-			close(pipe_r);
-			close(pipe_w);
 			pause();			
 		}
 
@@ -54,15 +52,16 @@ int main(int argc, char **argv){
 			fprintf(stdout, "My [Son2] Brother pid: %d\n", pid);
 			while(1){
 				pause(); // wait for the signal of read done form stdout
-				while((n = read(pipe_r, &ch, sizeof(char))) > 0){ // read char by char from pipe
+				n = 1;
+				while((n = read(pipe_r, &ch, sizeof(ch))) == 1){ // read char by char from pipe
+					if(ch == '\0')
+						break;
 					ch -= 32; // convert into capitalized letter
 					setbuf(stdout, NULL);
-					fprintf(stdout, "%c", ch);	// print char by char on stdout
+					fprintf(stdout, "%c", ch); // print char by char on stdout
 				}
-				// TODO: doesn't reach this point
-				setbuf(stdout, NULL);
-				fprintf(stdout, "\nNuova parola:\n");
-				sleep(3); // sleep 1 for race conditions problems
+				fprintf(stdout, "\n"); // when we finish a word we print a LF
+				sleep(3);
 				kill(pid, SIGUSR1); //send the signal to the brother that confirm read of the data
 			}	
 		}
@@ -70,12 +69,14 @@ int main(int argc, char **argv){
 	else{
 		pause(); // wait for the father to write the value of the pid 2 on the pipe
 		read(pipe_r, &pid2, sizeof(pid2)); // read the value of pid2 from the father
-		fprintf(stdout, "My [Son1] Brother pid: %d\n", pid2);
 		close(pipe_r); // close one part of the pipe
-		sleep(3);
+		fprintf(stdout, "My [Son1] Brother pid: %d\n", pid2);
 		while(1){
+			fprintf(stdout, "Insert lower case word\n");
 			fscanf(stdin, "%s", buf);
 			write(pipe_w, buf, sizeof(char) * strlen(buf)); // write char on pipe
+			ch = '\0'; // define the end of the word written
+			write(pipe_w, &ch, sizeof(char));
 			sleep(3); // sleep 1 second before sending the kill to avoid race conditions problems
 			kill(pid2, SIGUSR1); //send the signal to brother that there is someting to read
 			pause(); // set himself to wait for the signal of read done
