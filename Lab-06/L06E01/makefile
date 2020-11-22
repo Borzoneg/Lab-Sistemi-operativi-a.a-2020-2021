@@ -5,9 +5,9 @@ EXE=Main
 
 compile: $(SRC)
 	$(CC) $(FLAGS) $(EXE) $(SRC) -lm
+
 clean:
 	rm -rf $(EXE)
 
 cleanresult:
-	rm Pipe_file
-	touch Pipe_file
+	rm -R ./Results/tmpDir

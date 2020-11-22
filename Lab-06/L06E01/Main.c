@@ -8,15 +8,9 @@
 
 #define MAX 20
 
-
-// TODO: read from file instead of from pipe
-
 void manager(int SIG){
 	if(SIG == SIGUSR1)
 		return;
-	if(SIG == SIGUSR2){
-		exit(0);
-	}
 }
 
 int main(int argc, char **argv){
@@ -51,7 +45,6 @@ int main(int argc, char **argv){
 			close(pipe_w); // close the pipe for the father
 			kill(pid, SIGUSR1); // wake up the first son
 			pause();			
-			exit(0);
 		}
 
 		else{ // 2nd son case
@@ -81,11 +74,6 @@ int main(int argc, char **argv){
 		while(1){
 			fprintf(stdout, "Insert lower case word\n");
 			fscanf(stdin, "%s", buf);
-			if(!strcmp(buf, "end")){
-				kill(pid2, SIGUSR2);
-				kill(getppid(), SIGUSR2);
-				exit(0);
-			}
 			write(pipe_w, buf, sizeof(char) * strlen(buf)); // write char on pipe
 			ch = '\0'; // define the end of the word written
 			write(pipe_w, &ch, sizeof(char));
