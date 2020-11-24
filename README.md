@@ -31,3 +31,14 @@
 - concurrent sort of a vector
 
 ### Lab 06
+
+- Sort, grep, cut, tr
+- Find
+- Pipe and sinctronization
+- Pipe with signal
+
+### Lab 07
+
+- From recursion to concurrent program
+- Parallel sort of multiple files using thread
+- Merge of multiple sorted files with thread
