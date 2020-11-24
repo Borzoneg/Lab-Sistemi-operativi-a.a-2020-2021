@@ -1,0 +1,11 @@
+   64  cat lab06e04in.txt | sort -n -r -k 1 
+   66  cat lab06e04in.txt | sort -k 2
+   67  cat lab06e04in.txt | grep -e "Frequentato nel 2011/2012"
+   68  cat lab06e04in.txt | grep -e "INF1T3" | sort -k 1 -n
+   77  cat lab06e04in.txt | grep -e "^[0-9]*[4|2] " | sort -k 2 
+   84  cat lab06e04in.txt | grep -e "INF1T3" | grep -e "Da frequentare" |sort -k 1 -n
+   85  cat lab06e04in.txt | grep -e "INF1T3" -e "Da frequentare" |sort -k 1 -n
+   89  cat lab06e04in.txt | grep -e " [A-Z][a-z]*AA[A-Z][a-z]* "
+   93  cat lab06e04in.txt | grep -e " [A-Z]*A[A-Z][A-Z]A[A-Z]* "
+   94  cut -d ' ' -f 1 lab06e04in.txt | tr -d 0 | tr 8 1 | sort -n | uniq
+   95  cut -d ' ' -f 1 lab06e04in.txt | tr -d 0 | tr 8 1 | sort -n | uniq -d
