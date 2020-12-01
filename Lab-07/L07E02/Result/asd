@@ -1,0 +1,46 @@
+#!/bin/bash
+
+touch in1
+
+echo "5
+102
+99
+34
+234
+25">in1
+
+touch in2
+
+echo "5
+102
+99
+34
+234
+25">in2
+
+touch in3
+
+echo "5
+102
+99
+34
+234
+25">in3
+
+touch in4
+
+echo "5
+102
+99
+34
+234
+25">in4
+
+touch in5
+
+echo "5
+102
+99
+34
+234
+25">in5

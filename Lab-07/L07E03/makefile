@@ -11,6 +11,3 @@ clean:
 
 cleanresult:
 	rm -R ./Results/tmpDir
-
-serial:
-	$(CC) $(FLAGS) Serial Serial.c -lm
