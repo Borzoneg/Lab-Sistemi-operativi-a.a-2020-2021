@@ -1,0 +1,4 @@
+tosearch/bin/file2:1:printf
+tosearch/file2:1:printf("Hello world!")
+tosearch/file3:1:printf
+tosearch/tmp/file2:1:printf("Byebye world!);

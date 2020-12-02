@@ -1,0 +1,7 @@
+#!/bin/bash
+
+echo "Directory: $1"
+echo "Function: $2"
+echo "Output file: $3"
+
+grep $2 -R -n -H  $1 | sort -k 1 -o $3
