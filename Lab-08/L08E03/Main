@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo $1
+for f in $(ls $1); do
+	newName=$(echo $f | tr [:upper:] [:lower:])
+	if [ -f $1$f ]; 
+	then # for files		
+		if [ $f != $newName ]; then
+			mv $1$f $1$newName
+		fi
+		
+	else
+		if [ $f != $newName ]; then
+			mv $1$f $1$newName
+		fi
+		./$0 $1$newName/
+	fi
+done 

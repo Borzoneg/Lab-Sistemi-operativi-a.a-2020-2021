@@ -8,6 +8,6 @@ for f in $(ls $1); do
 		output=$filename:$output
 		echo $output | grep $2 >> $3
 	else
-		source $0 $1$f/ $2 $3
+		./$0 $1$f/ $2 $3
 	fi
 done 
