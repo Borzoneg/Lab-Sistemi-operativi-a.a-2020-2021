@@ -4,4 +4,6 @@ echo "Directory: $1"
 echo "Function: $2"
 echo "Output file: $3"
 
+ # we grep the function name from inside the directory recursively (-R) writing number of line (-n) and the line (-H)
+ # the sort the result by first field (the name) outputting in the output file
 grep $2 -R -n -H  $1 | sort -k 1 -o $3

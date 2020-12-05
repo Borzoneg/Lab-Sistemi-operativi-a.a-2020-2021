@@ -1,34 +1,33 @@
 #!/bin/bash
+
 nWord=0
 i=0
 flag=0
 
-file=$(tr '\n' ' ' < $1)
+file=$(tr '\n' ' ' < $1) # change all the newlin with space so that we have only one delimiter for the words
 
-for word in $file
+for word in $file # for each word in the file
 do
-	while [ $i -lt $nWord ]
+	while [ $i -lt $nWord ] # controlling if we already have the word
 	do
-		#echo ${words[$i]}
-		if [ "$word" == "${words[$i]}" ] # if we did encounter this word before
+		if [ "$word" == "${words[$i]}" ] # if we do
 		then
-			let counts[$i]=counts[$i]+1
-			flag=1
+			let counts[$i]=counts[$i]+1 # increment the count for that word
+			flag=1 # and set the flag so that we don't add the word again
 		fi
-		let i=i+1
+		let i=i+1 
 	done
 	i=0
-	if [ $flag -eq 0 ] 
+	if [ $flag -eq 0 ] # if we didn't already encounter the word
 	then
-		echo $word
-		words[$nWord]=$word
-		counts[$nWord]=1
-		let nWord=$nWord+1
+		words[$nWord]=$word # add to the list of word
+		counts[$nWord]=1 # set is occurance to 1
+		let nWord=$nWord+1 # increment the number of word we encountered
 	fi
-	flag=0
+	flag=0 # reset the flag
 done
 
-while [ $i -lt $nWord ]
+while [ $i -lt $nWord ] # echo of the output
 	do		
 	echo ${words[$i]} ":" ${counts[$i]}
 	let i=i+1

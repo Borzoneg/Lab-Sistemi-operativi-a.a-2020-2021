@@ -1,13 +1,13 @@
 #!/bin/bash
-echo $1
-for f in $(ls $1); do
-	if [ -f $1$f ]; 
-	then # for files
-		filename=$1$f
-		output=$(cat $1$f | grep $2 -n)
-		output=$filename:$output
-		echo $output | grep $2 >> $3
-	else
-		./$0 $1$f/ $2 $3
+
+for f in $(ls $1); do # for each entry of the directory ls
+	if [ -f $1$f ];  # if the entry is a file
+	then 
+		filename=$1$f # generate the filename
+		output=$(cat $1$f | grep $2 -n) # make a cat of the file and filter searching for the name of the function
+		output=$filename:$output # adding the filename to the output found before
+		echo $output | grep $2 >> $3 # writing the output on the output file
+	else # if the entry is a directory
+		./$0 $1$f/ $2 $3 # recursively call this script with the new arguments
 	fi
 done 

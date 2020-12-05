@@ -1,15 +1,14 @@
 #!/bin/bash
 
-max=0
+max=0 # starting point for max
 
-
-while read line
+while read line # read line by line file $1
 do
-	if [ ${#line} -gt $max ]
+	if [ ${#line} -gt $max ] # if the lenght of the file is the new max
 	then
-		maxLine=$line
-		max=${#line}
+		maxLine=$line # save the line
+		max=${#line} # save the lenght
 	fi
 done < $1
 
-echo $maxLine "is the longest line of lenght" $max
+echo $maxLine "is the longest line of lenght" $max # echo the result

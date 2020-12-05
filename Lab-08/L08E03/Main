@@ -1,18 +1,17 @@
 #!/bin/bash
 
-echo $1
-for f in $(ls $1); do
-	newName=$(echo $f | tr [:upper:] [:lower:])
-	if [ -f $1$f ]; 
-	then # for files		
-		if [ $f != $newName ]; then
-			mv $1$f $1$newName
+for f in $(ls $1); do # for each entry of the ls output of the directory
+	newName=$(echo $f | tr [:upper:] [:lower:]) # generate the name in lower letter
+	if [ -f $1$f ]; # if the entry is a file
+	then 
+		if [ $f != $newName ]; then #if it wasn't already all lower case
+			mv $1$f $1$newName # change the name
 		fi
 		
 	else
-		if [ $f != $newName ]; then
-			mv $1$f $1$newName
+		if [ $f != $newName ]; then #if it wasn't already all lower case
+			mv $1$f $1$newName # change the name
 		fi
-		./$0 $1$newName/
+		./$0 $1$newName/ # and recursively recall this script with the new value
 	fi
 done 
