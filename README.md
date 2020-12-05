@@ -42,3 +42,8 @@
 - From recursion to concurrent program
 - Parallel sort of multiple files using thread
 - Merge of multiple sorted files with thread
+
+### Lab 08
+
+- bash
+- recursive bash script
