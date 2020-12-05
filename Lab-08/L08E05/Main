@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# $1 can be either the name or the pid
+count=0
+
+while [ 1 ]
+do
+	line=$(ps -el | grep $1) # get the line with name/pid of the process
+	state=$(echo $line | cut -f 2 -d " ") # using cut we can easily get state \
+	pid=$(echo $line | cut -f 4 -d " ") # \ pid \
+	ppid=$(echo $line | cut -f 5 -d " ") # \ and pid of the father
+	if [ "$state" == "Z" ] 
+	then
+		let count=count+1 # increment the consecutive time we found the process in zombie state
+	else
+		count=0 # the 5 times must be consecutive
+	fi
+	if [ "$count" -eq "5" ] # if we got 5 zombie state consecutively
+	then
+		kill $ppid # we kill the father
+		exit 0 # and terminate the srcipt
+	fi
+	sleep $2s # wait for the second paramaters in seconds
+done
