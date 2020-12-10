@@ -33,10 +33,9 @@ main (
 
   fprintf (stdout, "Output:\n");
   for (i=0; i<=n; i++) {
-
     if (i == n) {
       for (j=0; j<n; j++) {
-        printf("%d", vet[j]);
+        printf("%d", vet[j]); // print of all digit
       }
      printf("\n");
      exit (0);
@@ -52,14 +51,11 @@ main (
            // Father
            pid = wait (&retValue);
            exit (0);
-         }  // if
-      } // if
+         }
+      }
 
-    } // else
+    }
 
-  } // for
-
-  //fprintf (stdout, "vet[%d]:%d - ", i, vet[i]);
-  //fprintf (stdout, "End PID=%d\n", getpid());
+  } 
   return (0);
 }

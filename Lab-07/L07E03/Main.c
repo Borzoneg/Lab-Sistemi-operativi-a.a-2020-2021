@@ -117,7 +117,7 @@ void *sortFile(void *data){
 
 
 
-int merge (int *v1,int *v2,int *vmerge,int size_v1, int size_v2){ 
+int merge (int *v1,int *v2,int *vmerge,int size_v1, int size_v2){ // simple merge function
   int size_vmerge;
   int i,j,k;
  
