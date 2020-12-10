@@ -20,7 +20,6 @@ void *sortFile(void *data);
 
 int main(int argc, char ** argv){
 
-	
 	int n, i, rc;
 	requiredInfo *parameters;
 	void *exit_status;
