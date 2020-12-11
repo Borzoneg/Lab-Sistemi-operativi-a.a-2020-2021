@@ -29,9 +29,9 @@ int *S5;
 int *S6;
 int *S7;
 int *S8;
+int *S9;
 
-int main(int argc, char **argv)
-{
+int main(int argc, char **argv){
 	// init of semaphores
 	S1 = s_init(1);
  	S2 = s_init(0);
@@ -41,6 +41,7 @@ int main(int argc, char **argv)
  	S6 = s_init(0);
  	S7 = s_init(0);
  	S8 = s_init(0);
+ 	S9 = s_init(0);
 
  	while(1){
 	if(!fork()) // 'A' process
@@ -62,9 +63,18 @@ int main(int argc, char **argv)
 	if(!fork()) // 'I' process
 		return(process_i());
 	}
-		
 	
-
+	// clean of semaphores
+	s_destroy(S1);
+	s_destroy(S2);
+	s_destroy(S3);
+	s_destroy(S4);
+	s_destroy(S5);
+	s_destroy(S6);
+	s_destroy(S7);
+	s_destroy(S8);
+	s_destroy(S9);
+	
 	return 0;
 }
 
@@ -125,7 +135,7 @@ int process_a(){
 int process_b(){
 	s_wait(S2);
 	fprintf(stdout, "B\n");
-	s_signal(S8);
+	s_signal(S9);
 	return(0);
 }
 
@@ -134,7 +144,7 @@ int process_c(){
 	s_wait(S3);
 	fprintf(stdout, "C\n");
 	s_signal(S5);
-	s_signal(S5);
+	s_signal(S6);
 	return(0);
 }
 
@@ -142,7 +152,7 @@ int process_c(){
 int process_d(){
 	s_wait(S4);
 	fprintf(stdout, "D\n");
-	s_signal(S7);	
+	s_signal(S8);	
 	return(0);
 }
 
@@ -150,40 +160,40 @@ int process_d(){
 int process_e(){
 	s_wait(S5);
 	fprintf(stdout, "E\n");
-	s_signal(S6);	
+	s_signal(S7);	
 	return(0);
 }
 
 
 int process_f(){
-	s_wait(S5);
+	s_wait(S6);
 	fprintf(stdout, "F\n");
-	s_signal(S6);
+	s_signal(S7);
 	return(0);
 }
 		
 
 int process_g(){
-	s_wait(S6);
-	s_wait(S6);
+	s_wait(S7);
+	s_wait(S7);
 	fprintf(stdout, "G\n");
-	s_signal(S8);
+	s_signal(S9);
 	return(0);
 }
 
 
 int process_h(){
-	s_wait(S7);
+	s_wait(S8);
 	fprintf(stdout, "H\n");
-	s_signal(S8);	
+	s_signal(S9);	
 	return(0);
 }
 
 
 int process_i(){
-	s_wait(S8);
-	s_wait(S8);
-	s_wait(S8);
+	s_wait(S9);
+	s_wait(S9);
+	s_wait(S9);
 	fprintf(stdout, "I\n");
 	s_signal(S1);	
 	return(0);

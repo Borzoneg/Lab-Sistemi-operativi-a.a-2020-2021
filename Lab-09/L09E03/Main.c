@@ -103,6 +103,19 @@ int main(int argc, char **argv){
 	
 	}
 
+	sem_destroy(S1);
+ 	sem_destroy(S2);
+ 	sem_destroy(S3);
+ 	sem_destroy(S4);
+ 	sem_destroy(S5);
+ 	sem_destroy(S6);
+ 	sem_destroy(S7);
+ 	sem_destroy(S8);
+ 	sem_destroy(S9);
+ 	sem_destroy(S10);
+ 	sem_destroy(S11);
+ 	sem_destroy(S12);
+
 	return 0;
 }
 
