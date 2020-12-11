@@ -29,9 +29,6 @@ sem_t *S6;
 sem_t *S7;
 sem_t *S8;
 sem_t *S9;
-sem_t *S10;
-sem_t *S11;
-sem_t *S12;
 
 int main(int argc, char **argv){
 	S1 = malloc(sizeof(sem_t));
@@ -43,9 +40,6 @@ int main(int argc, char **argv){
 	S7 = malloc(sizeof(sem_t));
 	S8 = malloc(sizeof(sem_t));
 	S9 = malloc(sizeof(sem_t));
-	S10 = malloc(sizeof(sem_t));
-	S11 = malloc(sizeof(sem_t));
-	S12 = malloc(sizeof(sem_t));
 	
 	// init of semaphores
 	sem_init(S1, 0, 1);
@@ -57,18 +51,16 @@ int main(int argc, char **argv){
  	sem_init(S7, 0, 0);
  	sem_init(S8, 0, 0);
  	sem_init(S9, 0, 0);
- 	sem_init(S10, 0, 0);
- 	sem_init(S11, 0, 0);
- 	sem_init(S12, 0, 0);
 
  	pthread_t t[NUM_THREAD];
  	int rc;
 
  	while(1){
+
 		rc = pthread_create(&t[0], NULL, process_a, NULL); // create thread for process A
 		if(rc) exit(1);
 		pthread_detach(t[0]); // detach so we don't have to wait for each thread
-
+		
 		rc = pthread_create(&t[1], NULL, process_b, NULL); 
 		if(rc) exit(1);
 		pthread_detach(t[1]); 
@@ -86,13 +78,13 @@ int main(int argc, char **argv){
 		pthread_detach(t[4]); 
 
 		rc = pthread_create(&t[5], NULL, process_f, NULL);
-			if(rc) exit(1);
+		if(rc) exit(1);
 		pthread_detach(t[5]); 
-		
+
 		rc = pthread_create(&t[6], NULL, process_g, NULL);
 		if(rc) exit(1);
 		pthread_detach(t[6]); 
-		
+
 		rc = pthread_create(&t[7], NULL, process_h, NULL);
 		if(rc) exit(1);
 		pthread_detach(t[7]); 
@@ -105,7 +97,6 @@ int main(int argc, char **argv){
 
 	return 0;
 }
-
 
 void *process_a(){
 	sem_wait(S1);
@@ -120,7 +111,7 @@ void *process_a(){
 void *process_b(){
 	sem_wait(S2);
 	fprintf(stdout, "B\n");
-	sem_post(S10);
+	sem_post(S9);
 	return(NULL);
 }
 
@@ -137,7 +128,7 @@ void *process_c(){
 void *process_d(){
 	sem_wait(S4);
 	fprintf(stdout, "D\n");
-	sem_post(S9);
+	sem_post(S8);
 	return(NULL);
 }
 
@@ -153,32 +144,32 @@ void *process_e(){
 void *process_f(){
 	sem_wait(S6);
 	fprintf(stdout, "F\n");
-	sem_post(S8);
+	sem_post(S7);
 	return(NULL);
 }
 		
 
 void *process_g(){
 	sem_wait(S7);
-	sem_wait(S8);
+	sem_wait(S7);
 	fprintf(stdout, "G\n");
-	sem_post(S11);
+	sem_post(S9);
 	return(NULL);
 }
 
 
 void *process_h(){
-	sem_wait(S9);
+	sem_wait(S8);
 	fprintf(stdout, "H\n");
-	sem_post(S12);
+	sem_post(S9);
 	return(NULL);
 }
 
 
 void *process_i(){
-	sem_wait(S10);
-	sem_wait(S11);
-	sem_wait(S12);
+	sem_wait(S9);
+	sem_wait(S9);
+	sem_wait(S9);
 	fprintf(stdout, "I\n");
 	sem_post(S1);
 	return(NULL);
