@@ -54,6 +54,6 @@
 - Use of semaphores implemented by pipe
 - Use of semaphores implemented by POSIX library
 
-# Lab 10
+### Lab 10
 
 - Advanced use of multithread programming
