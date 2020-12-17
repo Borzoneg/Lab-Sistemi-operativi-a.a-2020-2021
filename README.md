@@ -47,3 +47,13 @@
 
 - bash
 - recursive bash script
+
+### Lab 09
+
+- Sincronization by use of hardware solution
+- Use of semaphores implemented by pipe
+- Use of semaphores implemented by POSIX library
+
+# Lab 10
+
+- Advanced use of multithread programming
