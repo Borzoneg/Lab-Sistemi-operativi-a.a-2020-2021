@@ -4,7 +4,7 @@ SRC=Main.c
 EXE=Main
 
 compile: $(SRC)
-	$(CC) $(FLAGS) $(EXE) $(SRC) -lm
+	$(CC) $(FLAGS) $(EXE) -pthread $(SRC) -lm
 
 clean:
 	rm -rf $(EXE)
